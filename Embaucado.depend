@@ -1,0 +1,35 @@
+# depslib dependency file v1.0
+1719449578 source:c:\users\nahu_\onedrive\documentos\utn\programacion 1\unidad 3\practico\embaucado\main.cpp
+	"juego.h"
+	"constantes.h"
+	"cartas.h"
+	"puntaje.h"
+	"Menu.h"
+	<iostream>
+	<time.h>
+
+1719449785 c:\users\nahu_\onedrive\documentos\utn\programacion 1\unidad 3\practico\embaucado\menu.h
+	<string>
+	<iostream>
+	"constantes.h"
+	"juego.h"
+	"puntaje.h"
+	"cartas.h"
+
+1719436706 c:\users\nahu_\onedrive\documentos\utn\programacion 1\unidad 3\practico\embaucado\puntaje.h
+	"constantes.h"
+	"cartas.h"
+
+1719372874 c:\users\nahu_\onedrive\documentos\utn\programacion 1\unidad 3\practico\embaucado\cartas.h
+	"puntaje.h"
+	<cstdlib>
+
+1719369197 c:\users\nahu_\onedrive\documentos\utn\programacion 1\unidad 3\practico\embaucado\funcionalidad.h
+	"Menu.h"
+	"cartas.h"
+	"puntaje.h"
+
+1719372543 c:\users\nahu_\onedrive\documentos\utn\programacion 1\unidad 3\practico\embaucado\juego.h
+
+1719449025 c:\users\nahu_\onedrive\documentos\utn\programacion 1\unidad 3\practico\embaucado\constantes.h
+

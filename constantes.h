@@ -1,0 +1,12 @@
+#ifndef CONSTANTES_H_INCLUDED
+#define CONSTANTES_H_INCLUDED
+
+const int NUM_JUGADORES = 2;
+const int NUM_RONDAS = 3;
+const int PUNTAJE_SACRIFICIO = 20;
+
+const int NUM_CARTAS = 20;
+const int valorMazo[NUM_CARTAS] = {10,11,12,15,20,10,11,12,15,20,10,11,12,15,20,10,11,12,15,20};
+const int CARTAS_MANO = 5;
+
+#endif // CONSTANTES_H_INCLUDED
