@@ -9,6 +9,7 @@
 
 using namespace std;
 
+
 void iniciarJuego() {
     int mazo[NUM_CARTAS] = {0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19};
     std::string nombreCartas[NUM_CARTAS]={
@@ -20,12 +21,14 @@ void iniciarJuego() {
     int figuras[4] = {0, 1, 2, 3}; // 0: Corazón, 1: Diamante, 2: Pica, 3: Trébol
     string palos[4]={"Corazon","Diamante","Pica","Trebol"};
     int puntajes[NUM_JUGADORES] = {0, 0};
+
+    int puntajeMax[3]={0,0,0};
     int mano1[CARTAS_MANO], mano2[CARTAS_MANO];
     int embaucadora;
     bool sacrificado = false;
 
 
-    for (int ronda = 0; ronda < NUM_RONDAS; ++ronda) {
+    for (int ronda = 1; ronda <= NUM_RONDAS; ronda++) {
 
         barajar(mazo, NUM_CARTAS);
         barajar(figuras, 4);
@@ -36,7 +39,7 @@ void iniciarJuego() {
 
         cout<<"EMBAUCADO"<<endl;
         cout<<"------------------------------------------------------------------------"<<endl;
-        cout<< "RONDA #"<<ronda + 1<<endl;
+        cout<< "RONDA #"<<ronda <<endl;
         cout<<nombres[0]<<" VS "<<nombres[1]<<endl<<endl;
         cout<<"+-------------------------+"<<endl;
         cout<<nombres[0]<<" ("<<puntajes[0]<<" Puntos)"<<endl;
@@ -45,7 +48,7 @@ void iniciarJuego() {
         cout<<" "<<nombreCartas[mano1[2]]<<endl;
         cout<<" "<<nombreCartas[mano1[3]]<<endl;
         cout<<" "<<nombreCartas[mano1[4]]<<endl;
-        cout<<endl<<endl<<endl;
+        cout<<endl<<endl;
         cout<<nombres[1]<<" ("<<puntajes[1]<<" Puntos)"<<endl;
         cout<<" "<<nombreCartas[mano2[0]]<<endl;
         cout<<" "<<nombreCartas[mano2[1]]<<endl;
@@ -53,16 +56,17 @@ void iniciarJuego() {
         cout<<" "<<nombreCartas[mano2[3]]<<endl;
         cout<<" "<<nombreCartas[mano2[4]]<<endl;
         cout<<"+-------------------------+"<<endl;
-        cout << "Ronda " << ronda + 1 << " - Embaucadora: " << palos[embaucadora] << endl;
+        cout << "Ronda " << ronda  << " - Embaucadora: " << palos[embaucadora] << endl<<endl;
 
         embaucadora = figuras[0];
 
         sacrificado = false;
-        if (ronda > 0) {
+        if (ronda > 1) {
             int jugadorSacrificio = ronda % 2;
             cout<<"jugadorSacrificio"<<jugadorSacrificio<<endl;
             if (puntajes[jugadorSacrificio] >= PUNTAJE_SACRIFICIO) {
                 char decision;
+                cout << "valor variable ronda" << ronda<<endl;
                 cout << "Jugador " << jugadorSacrificio + 1 << ", ¿quieres sacrificar 20 puntos para cambiar la embaucadora? (S/N): ";
                 cin >> decision;
 
@@ -70,14 +74,15 @@ void iniciarJuego() {
                     puntajes[jugadorSacrificio] -= PUNTAJE_SACRIFICIO;
                     barajar(figuras, 4);
                     embaucadora = figuras[0];
-                    cout<< "- Nueva Embaucadora: "<< palos[embaucadora]<<endl;
+                    cout<< "- Nueva Embaucadora: "<< palos[embaucadora]<<endl<<endl;
                     sacrificado = true;
                 }
             }
             if (!sacrificado && puntajes[1 - jugadorSacrificio] >= PUNTAJE_SACRIFICIO) {
                 char decision;
-                std::cout << "Jugador " << 2 - jugadorSacrificio << ", ¿quieres sacrificar 20 puntos para cambiar la embaucadora? (S/N): ";
-                std::cin >> decision;
+                cout << "valor variable ronda" << ronda<<endl;
+                cout << "Jugador " << 2 - jugadorSacrificio << ", ¿quieres sacrificar 20 puntos para cambiar la embaucadora? (S/N): ";
+                cin >> decision;
 
                 if (decision == 's'||decision == 'S') {
                     puntajes[1 - jugadorSacrificio] -= PUNTAJE_SACRIFICIO;
@@ -95,22 +100,24 @@ void iniciarJuego() {
         puntajes[1] += puntaje2;
 
 
-
-        std::cout << "Jugador 1: " << puntaje1 << " puntos (Total: " << puntajes[0] << ")" << std::endl;
-        std::cout << "Jugador 2: " << puntaje2 << " puntos (Total: " << puntajes[1] << ")" << std::endl;
+        cout<<"Puntajes obtenidos:"<<endl;
+        cout<<"------------------------------------------------------------------------"<<endl;
+        cout << "Jugador 1: " << puntaje1 << " puntos (Total: " << puntajes[0] << ")" << endl;
+        cout << "Jugador 2: " << puntaje2 << " puntos (Total: " << puntajes[1] << ")" << endl;
 
         system("pause");
     }
 
 
     if (puntajes[0] > puntajes[1]) {
-        std::cout << "¡Jugador 1 es el ganador con " << puntajes[0] << " puntos!" << std::endl;
+        cout << "¡Jugador 1 es el ganador con " << puntajes[0] << " puntos!" << endl;
     } else if (puntajes[1] > puntajes[0]) {
-        std::cout << "¡Jugador 2 es el ganador con " << puntajes[1] << " puntos!" << std::endl;
+        cout << "¡Jugador 2 es el ganador con " << puntajes[1] << " puntos!" << endl;
     } else {
-        std::cout << "¡Es un empate con " << puntajes[0] << " puntos cada uno!" << std::endl;
+        cout << "¡Es un empate con " << puntajes[0] << " puntos cada uno!" << endl;
     }
-    system("pause");
+
+
 }
 
 

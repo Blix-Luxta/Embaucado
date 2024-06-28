@@ -7,15 +7,19 @@
 #include "puntaje.h"
 #include "cartas.h"
 
-
+int ID = 0;
 std::string nombres[2]={};
+int jugadorID[2]={};
+
 void ingresarNombre(){
     system("cls");
     std::cout<<std::endl<<"Para continuar, ingresa los nombres de los jugadores: "<<std::endl;
     std::cout<<"Jugador 1: ";
     std::cin>>nombres[0];
+    jugadorID[0]=ID++;
     std::cout<<"Jugador 2: ";
     std::cin>>nombres[1];
+    jugadorID[1]=ID++;
     std::cout<<std::endl;
 };
 std::string confirmarNombres(){
