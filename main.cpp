@@ -22,7 +22,6 @@ void iniciarJuego() {
     string palos[4]={"Corazon","Diamante","Pica","Trebol"};
     int puntajes[NUM_JUGADORES] = {0, 0};
 
-    int puntajeMax[3]={0,0,0};
     int mano1[CARTAS_MANO], mano2[CARTAS_MANO];
     int embaucadora;
     bool sacrificado = false;
@@ -40,7 +39,7 @@ void iniciarJuego() {
         cout<<"EMBAUCADO"<<endl;
         cout<<"------------------------------------------------------------------------"<<endl;
         cout<< "RONDA #"<<ronda <<endl;
-        cout<<nombres[0]<<" VS "<<nombres[1]<<endl<<endl;
+        cout<<nombres[0]<<" VS "<<nombres[1]<<endl;
         cout<<"+-------------------------+"<<endl;
         cout<<nombres[0]<<" ("<<puntajes[0]<<" Puntos)"<<endl;
         cout<<" "<<nombreCartas[mano1[0]]<<endl;
@@ -56,49 +55,62 @@ void iniciarJuego() {
         cout<<" "<<nombreCartas[mano2[3]]<<endl;
         cout<<" "<<nombreCartas[mano2[4]]<<endl;
         cout<<"+-------------------------+"<<endl;
-        cout << "Ronda " << ronda  << " - Embaucadora: " << palos[embaucadora] << endl<<endl;
+        cout << "Ronda " << ronda  << " - Embaucadora: " << palos[embaucadora] << endl;
 
         embaucadora = figuras[0];
 
         sacrificado = false;
         if (ronda > 1) {
             int jugadorSacrificio = ronda % 2;
-            cout<<"jugadorSacrificio"<<jugadorSacrificio<<endl;
-            if (puntajes[jugadorSacrificio] >= PUNTAJE_SACRIFICIO) {
-                char decision;
-                cout << "valor variable ronda" << ronda<<endl;
-                cout << "Jugador " << jugadorSacrificio + 1 << ", 퓉uieres sacrificar 20 puntos para cambiar la embaucadora? (S/N): ";
-                cin >> decision;
 
-                if (decision == 's'|| decision == 'S') {
-                    puntajes[jugadorSacrificio] -= PUNTAJE_SACRIFICIO;
-                    barajar(figuras, 4);
-                    embaucadora = figuras[0];
-                    cout<< "- Nueva Embaucadora: "<< palos[embaucadora]<<endl<<endl;
-                    sacrificado = true;
-                }
-            }
-            if (!sacrificado && puntajes[1 - jugadorSacrificio] >= PUNTAJE_SACRIFICIO) {
-                char decision;
-                cout << "valor variable ronda" << ronda<<endl;
-                cout << "Jugador " << 2 - jugadorSacrificio << ", 퓉uieres sacrificar 20 puntos para cambiar la embaucadora? (S/N): ";
-                cin >> decision;
+            char decision1;
+            do {
+                if (puntajes[jugadorSacrificio] >= PUNTAJE_SACRIFICIO) {
+                    cout << "Jugador " << jugadorSacrificio + 1 << ", 퓉uieres sacrificar 20 puntos para cambiar la embaucadora? (S/N): ";
+                    cin >> decision1;
 
-                if (decision == 's'||decision == 'S') {
-                    puntajes[1 - jugadorSacrificio] -= PUNTAJE_SACRIFICIO;
-                    barajar(figuras, 4);
-                    embaucadora = figuras[0];
-                    cout<< "- Nueva Embaucadora: "<< palos[embaucadora]<<endl;
+                    if (decision1 == 's' || decision1 == 'S') {
+                        puntajes[jugadorSacrificio] -= PUNTAJE_SACRIFICIO;
+                        barajar(figuras, 4);
+                        embaucadora = figuras[0];
+                        cout << "- Nueva Embaucadora: " << palos[embaucadora] << endl << endl;
+                        sacrificado = true;
+                    } else if (decision1 == 'n' || decision1 == 'N') {
+                        break;
+                    } else {
+                        cout << "Opcion invalida." << endl;
+                    }
+                } else {
+                    break;
                 }
-            }
+            } while (decision1 != 's' && decision1 != 'S' && decision1 != 'n' && decision1 != 'N');
+
+            char decision2;
+            do {
+                if (!sacrificado && puntajes[1 - jugadorSacrificio] >= PUNTAJE_SACRIFICIO) {
+                    cout << "Jugador " << 2 - jugadorSacrificio << ", 퓉uieres sacrificar 20 puntos para cambiar la embaucadora? (S/N): ";
+                    cin >> decision2;
+
+                    if (decision2 == 's' || decision2 == 'S') {
+                        puntajes[1 - jugadorSacrificio] -= PUNTAJE_SACRIFICIO;
+                        barajar(figuras, 4);
+                        embaucadora = figuras[0];
+                        cout << "- Nueva Embaucadora: " << palos[embaucadora] << endl;
+                    } else if (decision2 == 'n' || decision2 == 'N') {
+                        break;
+                    } else {
+                        cout << "Opcion invalida." << endl;
+                    }
+                } else {
+                    break;
+                }
+            } while (decision2 != 's' && decision2 != 'S' && decision2 != 'n' && decision2 != 'N');
         }
-
 
         int puntaje1 = calcularPuntaje(mano1, embaucadora);
         int puntaje2 = calcularPuntaje(mano2, embaucadora);
         puntajes[0] += puntaje1;
         puntajes[1] += puntaje2;
-
 
         cout<<"Puntajes obtenidos:"<<endl;
         cout<<"------------------------------------------------------------------------"<<endl;
@@ -108,18 +120,23 @@ void iniciarJuego() {
         system("pause");
     }
 
+        actualizarEstadisticas(nombres[0], puntajes[0]);
+        actualizarEstadisticas(nombres[1], puntajes[1]);
 
     if (puntajes[0] > puntajes[1]) {
+        system("cls");
         cout << "좯ugador 1 es el ganador con " << puntajes[0] << " puntos!" << endl;
+
     } else if (puntajes[1] > puntajes[0]) {
+        system("cls");
         cout << "좯ugador 2 es el ganador con " << puntajes[1] << " puntos!" << endl;
+
     } else {
+        system("cls");
         cout << "좪s un empate con " << puntajes[0] << " puntos cada uno!" << endl;
+
     }
-
-
 }
-
 
 int main()
 {

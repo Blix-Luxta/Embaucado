@@ -33,7 +33,7 @@
 
 1719449025 c:\users\nahu_\onedrive\documentos\utn\programacion 1\unidad 3\practico\embaucado\constantes.h
 
-1719526918 source:c:\users\nahu_\onedrive\documentos\utn\programacion 1\embaucado\main.cpp
+1719879943 source:c:\users\nahu_\onedrive\documentos\utn\programacion 1\embaucado\main.cpp
 	"juego.h"
 	"constantes.h"
 	"cartas.h"
@@ -50,11 +50,12 @@
 	"puntaje.h"
 	<cstdlib>
 
-1719518107 c:\users\nahu_\onedrive\documentos\utn\programacion 1\embaucado\puntaje.h
+1719875281 c:\users\nahu_\onedrive\documentos\utn\programacion 1\embaucado\puntaje.h
+	<string>
 	"constantes.h"
 	"cartas.h"
 
-1719527487 c:\users\nahu_\onedrive\documentos\utn\programacion 1\embaucado\menu.h
+1719880917 c:\users\nahu_\onedrive\documentos\utn\programacion 1\embaucado\menu.h
 	<string>
 	<iostream>
 	"constantes.h"

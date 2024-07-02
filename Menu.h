@@ -13,7 +13,9 @@ int jugadorID[2]={};
 
 void ingresarNombre(){
     system("cls");
-    std::cout<<std::endl<<"Para continuar, ingresa los nombres de los jugadores: "<<std::endl;
+    std::cout<<"EMBAUCADO"<<std::endl;
+    std::cout<<"------------------------------------------------------------------------"<<std::endl;
+    std::cout<<"Para continuar, ingresa los nombres de los jugadores: "<<std::endl;
     std::cout<<"Jugador 1: ";
     std::cin>>nombres[0];
     jugadorID[0]=ID++;
@@ -49,7 +51,20 @@ std::string confirmarNombres(){
     }
 };
 
+void mostrarEstadisticas() {
+    std::cout<<"EMBAUCADO"<<std::endl;
+    std::cout<<"------------------------------------------------------------------------"<<std::endl;
+    std::cout << "ESTADISTICAS DE PUNTAJES MAS ALTOS:" << std::endl<< std::endl;
+    for (int i = 0; i < 5; ++i) {
+        if (puntajesAltos[i] > 0) {
+            std::cout << i + 1 << ". " << nombresAltos[i] << ": " << puntajesAltos[i] << " puntos" << std::endl;
+        }
+    }
+}
+
 void mostrarInstrucciones(){
+    std::cout<<"EMBAUCADO"<<std::endl;
+    std::cout<<"------------------------------------------------------------------------"<<std::endl;
     std::cout << "Bienvenidos a Embaucado. Las reglas del juego son las siguientes..." << std::endl<< std::endl;
     std::cout << "El juego se juega con los 10, J, Q, K y A de los cuatro palos (Corazon, Diamante, Pica, Trebol)." << std::endl;
     std::cout << "En cada ronda, los jugadores reciben 5 cartas y se revela una carta embaucadora." << std::endl;
@@ -90,11 +105,11 @@ int menu(){
                          system("cls");
                         std::cout<<"A jugar."<<std::endl;
                         std::string res;
-                        while(res!="continuar"){
+                        do{
                             ingresarNombre();
-                            res = confirmarNombres();
                         }
-                        std::cout<<"deberia de continuar...";
+                        while(confirmarNombres()!="continuar");
+
                         iniciarJuego();
                         system("pause");
                     }
@@ -102,22 +117,21 @@ int menu(){
 
                 case 2:
                     system("cls");
-                    std::cout<<"- - - - - - - - - - - - - - - - - - - - - - - - - "<<std::endl;
-                    std::cout<<std::endl<< "    ACA SE PONDRAN LOS PUNTAJES MAS ALTOS."<<std::endl;
-                    std::cout<<"             PREPARADO PARA EL DESAFIO?"<<std::endl;
-                    std::cout<<std::endl<<"- - - - - - - - - - - - - - - - - - - - - - - - - "<<std::endl;
+                    mostrarEstadisticas();
+                    std::cout<<"------------------------------------------------------------------------"<<std::endl;
                     system("pause");
                     break;
                 case 3:
                     system("cls");
-                    std::cout<<"_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _"<<std::endl;
+                    std::cout<<"EMBAUCADO"<<std::endl;
+                    std::cout<<"------------------------------------------------------------------------"<<std::endl;
                     std::cout<<"LEGAJO    NOMBRE COMPLETO"<<std::endl;
-                    std::cout<<"_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _"<<std::endl;
+                    std::cout<<"------------------------------------------------------------------------"<<std::endl;
                     std::cout<<std::endl;
                     std::cout<<"30863     Tomas Acuña"<<std::endl;
                     std::cout<<"30258     Nahuel Agustin Caero"<<std::endl;
                     std::cout<<"30979     Francisco Valentin Garcia Aller"<<std::endl;
-                    std::cout<<"_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _"<<std::endl;
+                    std::cout<<"------------------------------------------------------------------------"<<std::endl;
                     std::cout<<std::endl;
 
                     system("pause");
